@@ -1,4 +1,6 @@
-My personal version of marlin intended for use with my personally own printers and for testing.
+## My personal version of marlin 2.0.x
+
+intended for use with my personally owned printers and testing.
 
 ## The following links display every line of code i ever contributed to marlin.
 
