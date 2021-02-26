@@ -108,7 +108,11 @@
 // section used to simplify variables |
 //-------------------------------------
 
-//#define MIX      // Mixing       2 in 1 - 1 Virtual Extruder //#define CYCLOPS  // Cyclops      2 in 1 - 2 Physical Extruder //#define MIXT     // Mixing T     3 in 1 - 1 Virtual Extruder//#define CYCLOPST // Cyclops T    3 in 1 - 3 Physical Extruder //#define DUALEX   // 2 Extruders  2 in 2 - 2 Physical Extruder & 2 Nozzles
+// MIX      // Mixing       2 in 1 - 1 Virtual Extruder 
+// CYCLOPS  // Cyclops      2 in 1 - 2 Physical Extruder 
+// MIXT     // Mixing T     3 in 1 - 1 Virtual Extruder
+// CYCLOPST // Cyclops T    3 in 1 - 3 Physical Extruder 
+// DUALEX   // 2 Extruders  2 in 2 - 2 Physical Extruder & 2 Nozzles
 
 #if ENABLED (GTA10D)
     #define GTA10
@@ -183,9 +187,8 @@
 //#define YHCB2004LCD // Override default LCD with THCB2004 found on new gt2560 V4.1 boards
 //#define FULLGFXLCD  // Override default LCD with FUllGFXLCD found on A20 and its variants
 
-//(Driver Mods) enable 1 (Mod) driver type
-
-#define STOCKA4988 // Stock drivers  
+//(Driver Mods) enable 1 (Mod) select 1 driver type or none for stock/a4988
+  
 //#define A5984      // Enable A5984   all drivers
 //#define DRV8825    // Enable DRV8825 all drivers
 //#define LV8729     // Enable LV8729  all drivers
@@ -661,18 +664,18 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define MAXHOTENDTEMP 260  // Max hotend temp 260
+#define MAXHOTENDTEMP (260 + 15) // Max hotend temp 260
 
-#define HEATER_0_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_1_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_2_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_3_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_4_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_5_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_6_MAXTEMP (MAXHOTENDTEMP + 15)
-#define HEATER_7_MAXTEMP (MAXHOTENDTEMP + 15)
-#define BED_MAXTEMP      (MAXHOTENDTEMP / 2 - 10)
-#define CHAMBER_MAXTEMP  (MAXHOTENDTEMP / 4 - 5)
+#define HEATER_0_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_1_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_2_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_3_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_4_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_5_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_6_MAXTEMP (MAXHOTENDTEMP)
+#define HEATER_7_MAXTEMP (MAXHOTENDTEMP)
+#define BED_MAXTEMP      (MAXHOTENDTEMP / 2)
+#define CHAMBER_MAXTEMP  (MAXHOTENDTEMP / 4)
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -967,7 +970,7 @@
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
 
-#if ENABLED (STOCKA4988)
+#if DISABLED (TMC2208S, TMC2209S, TMC2130S, TMC2160S, TMC26XS, TMC2660S, TMC5130S, TMC5160S, A5984, DRV9925, LV8729, L6470, TB6560, TB6600)
   #define X_DRIVER_TYPE  A4988
   #define Y_DRIVER_TYPE  A4988
   #define Z_DRIVER_TYPE  A4988
@@ -1675,11 +1678,11 @@
 #endif
 
 #if  ANY (GTA10, GTA20, GTA30) && ANY(MIXT, CYCLOPST, CYCLOPST)
-  #define X_MIN_POS -1   //- this is what it is on my test machines yours could differ
-  #define Y_MIN_POS -7   //- this is what it is on my test machines yours could differ
+  #define X_MIN_POS -1   //- this is what it is on my machines yours could differ as much as 10mm
+  #define Y_MIN_POS -7   //- this is what it is on my machines yours could differ as much as 10mm
 #elif ANY (GTA10, GTA20, GTA30)
-  #define X_MIN_POS -10  //- this is what it is on my test machines yours could differ
-  #define Y_MIN_POS -5   //- this is what it is on my test machines yours could differ
+  #define X_MIN_POS -10  //- this is what it is on my machines yours could differ as much as 10mm
+  #define Y_MIN_POS -5   //- this is what it is on my machines yours could differ as much as 10mm
 #else
   #define X_MIN_POS 0
   #define Y_MIN_POS 0
@@ -1897,12 +1900,12 @@
   #define LEVEL_CORNERS_Z_HOP       5.0   // (mm) Z height of nozzle between leveling points
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
 
-  #if ANY (FIX_MOUNTED_PROBE, BLTOUCH)
-    #define LEVEL_CORNERS_USE_PROBE
+  #if HAS_BED_PROBE || ENABLED (BLTOUCH)
+    //#define LEVEL_CORNERS_USE_PROBE
   #endif
 
   #if ENABLED(LEVEL_CORNERS_USE_PROBE)
-    #define LEVEL_CORNERS_PROBE_TOLERANCE 0.05
+    #define LEVEL_CORNERS_PROBE_TOLERANCE 0.025
     #define LEVEL_CORNERS_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
     //#define LEVEL_CORNERS_AUDIO_FEEDBACK
   #endif
