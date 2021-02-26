@@ -183,8 +183,9 @@
 //#define YHCB2004LCD // Override default LCD with THCB2004 found on new gt2560 V4.1 boards
 //#define FULLGFXLCD  // Override default LCD with FUllGFXLCD found on A20 and its variants
 
-//(Driver Mods) enable 1 (Mod) driver type or none for (Stock/A4988)
+//(Driver Mods) enable 1 (Mod) driver type
 
+#define STOCKA4988 // Stock drivers  
 //#define A5984      // Enable A5984   all drivers
 //#define DRV8825    // Enable DRV8825 all drivers
 //#define LV8729     // Enable LV8729  all drivers
@@ -337,8 +338,8 @@
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 #if ANY (CYCLOPS, CYCLOPST)
   #define SINGLENOZZLE
-  //#define SINGLENOZZLE_STANDBY_TEMP // causes compile error check again later
-  //#define SINGLENOZZLE_STANDBY_FAN
+  #define SINGLENOZZLE_STANDBY_TEMP
+  #define SINGLENOZZLE_STANDBY_FAN
 #endif
 
 /**
@@ -965,23 +966,16 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-//#define X_DRIVER_TYPE  A4988
-//#define Y_DRIVER_TYPE  A4988
-//#define Z_DRIVER_TYPE  A4988
-//#define X2_DRIVER_TYPE A4988
-//#define Y2_DRIVER_TYPE A4988
-//#define Z2_DRIVER_TYPE A4988
-//#define Z3_DRIVER_TYPE A4988
-//#define Z4_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
-//#define E1_DRIVER_TYPE A4988
-//#define E2_DRIVER_TYPE A4988
-//#define E3_DRIVER_TYPE A4988
-//#define E4_DRIVER_TYPE A4988
-//#define E5_DRIVER_TYPE A4988
-//#define E6_DRIVER_TYPE A4988
-//#define E7_DRIVER_TYPE A4988
 
+#if ENABLED (STOCKA4988)
+  #define X_DRIVER_TYPE  A4988
+  #define Y_DRIVER_TYPE  A4988
+  #define Z_DRIVER_TYPE  A4988
+  #define Z2_DRIVER_TYPE A4988
+  #define E0_DRIVER_TYPE A4988
+  #define E1_DRIVER_TYPE A4988
+  #define E2_DRIVER_TYPE A4988
+#endif
 
 #if ENABLED (TMC2208S)
   #define X_DRIVER_TYPE  TMC2208_STANDALONE
