@@ -1441,11 +1441,8 @@
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
 #endif
 
-// X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 20*60
-
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (133*60)
+#define XY_PROBE_FEEDRATE (20*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (4*60)
