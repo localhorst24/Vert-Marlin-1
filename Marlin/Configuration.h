@@ -84,7 +84,7 @@
 //#define GTA10M      // A10M
 //#define GTA10C      // A10C Alternative Cyclopes system for A10M
 //#define GTA10T      // A10T
-//#define GTA10CT     // A10CT Alternative Cyclopes system for A10T
+  #define GTA10CT     // A10CT Alternative Cyclopes system for A10T
 
 //#define GTA20       // A20
 //#define GTA20M      // A20M
@@ -313,11 +313,11 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "Geeetech A10T"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
-#define MACHINE_UUID "836fa943-1337-1337-1337-98a20de75607"
+//#define MACHINE_UUID "836fa943-1337-1337-1337-98a20de75607"
 
 // @section extruder
 
@@ -598,10 +598,13 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 1
+//#define TEMP_SENSOR_0 5
+
+#define TEMP_SENSOR_1 0
 
 #if ENABLED (DUALEX)
-  #define TEMP_SENSOR_1 5
+  //#define TEMP_SENSOR_1 5
 #endif
 
 #define TEMP_SENSOR_2 0
@@ -647,7 +650,7 @@
 
 // Below this temperature the heater will be switched off
 // because it probably indicates a broken thermistor wire.
-#define MINTEMPALL 0
+#define MINTEMPALL 5
 #define HEATER_0_MINTEMP   MINTEMPALL
 #define HEATER_1_MINTEMP   MINTEMPALL
 #define HEATER_2_MINTEMP   MINTEMPALL
@@ -662,8 +665,8 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define MAXHOTENDTEMP (260 + 15) // Max hotend temp 260
-
+#define MAXHOTENDTEMP (260 + 5) // Max hotend temp 260
+//#define MAXHOTENDTEMP (260 + 15) // Max hotend temp 260
 #define HEATER_0_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_1_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_2_MAXTEMP (MAXHOTENDTEMP)
@@ -672,7 +675,8 @@
 #define HEATER_5_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_6_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_7_MAXTEMP (MAXHOTENDTEMP)
-#define BED_MAXTEMP      (MAXHOTENDTEMP / 2)
+#define BED_MAXTEMP 125
+//#define BED_MAXTEMP      (MAXHOTENDTEMP / 2)
 #define CHAMBER_MAXTEMP  (MAXHOTENDTEMP / 4)
 
 /**
@@ -844,14 +848,15 @@
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 150
+#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 1000
+#define EXTRUDE_MAXLENGTH 400
+//#define EXTRUDE_MAXLENGTH 1000
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -1178,7 +1183,7 @@
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 }
 #elif ENABLED (MULTIEXTRUDER)
-  #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
+  #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 405.13 } // geared extruder found on M & T variants
   //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 }
 #endif
 
@@ -1187,7 +1192,8 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+//#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1200,6 +1206,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+//Geeetech.. #define DEFAULT_MAX_ACCELERATION      { 500, 500, 200, 10000 }
 #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1231,7 +1238,8 @@
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK 10.0
   #define DEFAULT_YJERK 10.0
-  #define DEFAULT_ZJERK  0.3
+  #define DEFAULT_ZJERK  0.4
+  //#define DEFAULT_ZJERK  0.3
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
@@ -1241,7 +1249,8 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    3.5  // May be used by Linear Advance
+#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+//#define DEFAULT_EJERK    3.5  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1264,7 +1273,12 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-//#define S_CURVE_ACCELERATION
+#define S_CURVE_ACCELERATION
+
+
+/** define for iNTERGARTED FIRMWARE FOR GEEETECH**/
+#define INTEGRATED_FW  1
+
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1312,20 +1326,20 @@
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
-//#define PROBE_MANUALLY
-//#define MANUAL_PROBE_START_Z 0.2
+#define PROBE_MANUALLY
+#define MANUAL_PROBE_START_Z 0.2
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-//#define FIX_MOUNTED_PROBE
+#define FIX_MOUNTED_PROBE
 
 /**
  * Use the nozzle as the probe, with the hotend
  * assembly attached to a sensitive strain gauge.
  */
-//#define STRAIN_GAUGE_PROBE
+#define STRAIN_GAUGE_PROBE
 
 /**
  * Use the nozzle as the probe, as with a conductive
@@ -1442,7 +1456,8 @@
  *     O-- FRONT --+
  */
 #if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
-  #define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ
+  #define NOZZLE_TO_PROBE_OFFSET { -37, 0, -0.50 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ
+  //#define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ
 #elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
   #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }  // Nozzle To Probe offset XYZ A10M+T/A20M+T - this is what it is on my test machines yours could differ
 #else
@@ -1450,7 +1465,8 @@
 #endif
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (20*60)
+#define XY_PROBE_FEEDRATE (133*60) // 8000
+//#define XY_PROBE_FEEDRATE (20*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (4*60)
@@ -1540,15 +1556,15 @@
  */
 //#define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
-  //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
-  //#define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
+  #define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
+  #define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
 #endif
 //#define PROBING_FANS_OFF          // Turn fans off when probing
 //#define PROBING_STEPPERS_OFF      // Turn steppers off (unless needed to hold position) when probing
-//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // Require minimum nozzle and/or bed temperature for probing
-//#define PREHEAT_BEFORE_PROBING
+#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
   #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
   #define PROBING_BED_TEMP     50
@@ -1629,7 +1645,7 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
+#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
 //#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
 
 /**
@@ -1680,14 +1696,16 @@
   #define Y_BED_SIZE 165
   #define Z_MAX_POS 155
 #elif ENABLED (GTA10)
-  #define X_BED_SIZE 230
+  #define X_BED_SIZE 220
   #define Y_BED_SIZE 230
   #define Z_MAX_POS 250
 #endif
 
 #if  ANY (GTA10, GTA20, GTA30) && ANY(MIXT, CYCLOPST, CYCLOPST)
-  #define X_MIN_POS -1   //- this is what it is on my machines yours could differ as much as 10mm
-  #define Y_MIN_POS -7   //- this is what it is on my machines yours could differ as much as 10mm
+  #define X_MIN_POS -15  //- this is what it is on my machines yours could differ as much as 10mm
+  #define Y_MIN_POS -8   //- this is what it is on my machines yours could differ as much as 10mm
+  //#define X_MIN_POS -1   //- this is what it is on my machines yours could differ as much as 10mm
+  //#define Y_MIN_POS -7   //- this is what it is on my machines yours could differ as much as 10mm
 #elif ANY (GTA10, GTA20, GTA30)
   #define X_MIN_POS -10  //- this is what it is on my machines yours could differ as much as 10mm
   #define Y_MIN_POS -5   //- this is what it is on my machines yours could differ as much as 10mm
@@ -1760,7 +1778,8 @@
    #endif
    #endif
 
-   #define FIL_RUNOUT_ENABLED_DEFAULT false // Enable the sensor on startup. Override with M412 followed by M500.
+   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
+   //#define FIL_RUNOUT_ENABLED_DEFAULT false // Enable the sensor on startup. Override with M412 followed by M500.
    #define FIL_RUNOUT_STATE  HIGH     // set to high to invert the logic of the sensors. some geeetech filament sensors are inverted if trigger with filament loaded invert.
    #define FIL_RUNOUT_PULLUP          // Use internal pullup for filament runout pins.
 
@@ -1805,7 +1824,7 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-  //#define FILAMENT_RUNOUT_DISTANCE_MM 2
+  #define FILAMENT_RUNOUT_DISTANCE_MM 20
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
@@ -1969,12 +1988,15 @@
 //
 #if ANY (FIX_MOUNTED_PROBE, BLTOUCH)
 #define Z_SAFE_HOMING
+  //#define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE)/2))    // X point for Z homing when homing all axes (G28).
+  //#define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE)/2))    // Y point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_X_POINT X_CENTER    // X point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_Y_POINT Y_CENTER    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
+//#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2049,9 +2071,9 @@
 // When enabled Marlin will send a busy status message to the host
 // every couple of seconds when it can't accept commands.
 //
-#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
-#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
-#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
+//#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
+//#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
+//#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 
 //
 // G20/G21 Inch mode support
@@ -2074,11 +2096,31 @@
 #define PREHEAT_1_TEMP_CHAMBER  35
 #define PREHEAT_1_FAN_SPEED      0 // Value from 0 to 255
 
-#define PREHEAT_2_LABEL       "PETG"
-#define PREHEAT_2_TEMP_HOTEND  250
-#define PREHEAT_2_TEMP_BED      70
+#define PREHEAT_2_LABEL       "ABS"
+#define PREHEAT_2_TEMP_HOTEND  240
+#define PREHEAT_2_TEMP_BED      90
 #define PREHEAT_2_TEMP_CHAMBER  35
 #define PREHEAT_2_FAN_SPEED      0 // Value from 0 to 255
+
+#define PREHEAT_3_LABEL       "PETG"
+#define PREHEAT_3_TEMP_HOTEND  250
+#define PREHEAT_3_TEMP_BED      70
+#define PREHEAT_3_TEMP_CHAMBER  35
+#define PREHEAT_3_FAN_SPEED      0 // Value from 0 to 255
+
+#define PREHEAT_4_LABEL       "TPU"
+#define PREHEAT_4_TEMP_HOTEND  240
+#define PREHEAT_4_TEMP_BED      90
+#define PREHEAT_4_TEMP_CHAMBER  35
+#define PREHEAT_4_FAN_SPEED      0 // Value from 0 to 255
+
+/*
+#define PREHEAT_5_LABEL       "XXX"
+#define PREHEAT_5_TEMP_HOTEND  000
+#define PREHEAT_5_TEMP_BED      00
+#define PREHEAT_5_TEMP_CHAMBER  35
+#define PREHEAT_5_FAN_SPEED      0 // Value from 0 to 255
+*/
 
 /**
  * Nozzle Park
@@ -2137,7 +2179,7 @@
  *   Caveats: The ending Z should be the same as starting Z.
  * Attention: EXPERIMENTAL. G-code arguments may change.
  */
-//#define NOZZLE_CLEAN_FEATURE
+#define NOZZLE_CLEAN_FEATURE
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
   // Default number of pattern repetitions
   #define NOZZLE_CLEAN_STROKES  5
@@ -3030,18 +3072,19 @@
 //#define RGBW_LED
 
 #if EITHER(RGB_LED, RGBW_LED)
-  //#define RGB_LED_R_PIN 34
-  //#define RGB_LED_G_PIN 43
-  //#define RGB_LED_B_PIN 35
-  //#define RGB_LED_W_PIN -1
+  #define RGB_LED_R_PIN 34
+  #define RGB_LED_G_PIN 43
+  #define RGB_LED_B_PIN 35
+  #define RGB_LED_W_PIN -1
 #endif
 
 // Support for Adafruit Neopixel LED driver
 //#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-  #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
+  #define NEOPIXEL_TYPE   NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   #define NEOPIXEL_PIN     P1_24       // LED driving pin
   //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
+  #define NEOPIXEL2_PIN    4
   //#define NEOPIXEL2_PIN    5
   //#define NEOPIXEL2_INSERIES     // Default behavior is NeoPixel 2 in parallel
   #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
