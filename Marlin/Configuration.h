@@ -1206,8 +1206,8 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-//Geeetech.. #define DEFAULT_MAX_ACCELERATION      { 500, 500, 200, 10000 }
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
+  #define DEFAULT_MAX_ACCELERATION      {  500,  500, 200, 10000 }
+//#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1222,8 +1222,8 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          500       // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  500       // E acceleration for retracts
+#define DEFAULT_ACCELERATION           500       // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION   500       // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   1000       // X, Y, Z acceleration for travel (non printing) moves
 
 /**
@@ -1249,7 +1249,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+  #define DEFAULT_EJERK    5.0  // May be used by Linear Advance
 //#define DEFAULT_EJERK    3.5  // May be used by Linear Advance
 
 /**
@@ -1277,8 +1277,7 @@
 
 
 /** define for iNTERGARTED FIRMWARE FOR GEEETECH**/
-#define INTEGRATED_FW  1
-
+//#define INTEGRATED_FW  1  //From Geetech previous version
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1465,7 +1464,7 @@
 #endif
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (133*60) // 8000
+  #define XY_PROBE_FEEDRATE (133*60) // 8000
 //#define XY_PROBE_FEEDRATE (20*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
@@ -1510,8 +1509,8 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#define MULTIPLE_PROBING 3  // Probe 3 times take the average
-//#define EXTRA_PROBING    1
+  #define MULTIPLE_PROBING 3  // Probe 3 times take the average
+  #define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1646,7 +1645,7 @@
 // @section homing
 
 #define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
-//#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
+#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
 
 /**
  * Set Z_IDLE_HEIGHT if the Z-Axis moves on its own when steppers are disabled.
