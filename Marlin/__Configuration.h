@@ -154,8 +154,8 @@
 // Save and restore temperature and fan speed on tool-change.
 // Set standby for the unselected tool with M104/106/109 T...
 #if ENABLED(SINGLENOZZLE)
-  //#define SINGLENOZZLE_STANDBY_TEMP
-  //#define SINGLENOZZLE_STANDBY_FAN
+  #define SINGLENOZZLE_STANDBY_TEMP
+  #define SINGLENOZZLE_STANDBY_FAN
 #endif
 
 /**
@@ -1108,7 +1108,7 @@
  * A total of 3 or more adds more slow probes, taking the average.
  */
 #define MULTIPLE_PROBING 2
-#define EXTRA_PROBING    1
+//#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -2032,7 +2032,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // GT2560 (YHCB2004) LCD Display
@@ -2040,7 +2040,7 @@
 // Requires Testato, Koepel softwarewire library and
 // Andriy Golovnya's LiquidCrystal_AIP31068 library.
 //
-//#define YHCB2004
+#define YHCB2004
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
