@@ -69,9 +69,9 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Vert)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "LARiFARi" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
-#define SHORT_BUILD_VERSION "Bugfix Build 504"
+#define SHORT_BUILD_VERSION "Bugfixfix Build 504 "
 
 //START_HERE
 //-------------------------
@@ -83,8 +83,8 @@
 //#define GTA10D      // A10D
 //#define GTA10M      // A10M
 //#define GTA10C      // A10C Alternative Cyclopes system for A10M
-//#define GTA10T      // A10T
-  #define GTA10CT     // A10CT Alternative Cyclopes system for A10T
+  #define GTA10T      // A10T
+//#define GTA10CT     // A10CT Alternative Cyclopes system for A10T
 
 //#define GTA20       // A20
 //#define GTA20M      // A20M
@@ -179,7 +179,7 @@
 
 //(LCD Mod)
 
-//#define YHCB2004LCD // Override default LCD with THCB2004 found on new gt2560 V4.1 boards
+  #define YHCB2004LCD // Override default LCD with THCB2004 found on new gt2560 V4.1 boards
 //#define FULLGFXLCD  // Override default LCD with FUllGFXLCD found on A20 and its variants
 
 //(Driver Mods) enable 1 (Mod) select 1 driver type or none for stock/a4988
@@ -313,7 +313,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Geeetech A10T"
+#define CUSTOM_MACHINE_NAME "LARiFARi's A10T"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -855,8 +855,8 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 400
-//#define EXTRUDE_MAXLENGTH 1000
+//#define EXTRUDE_MAXLENGTH 400
+#define EXTRUDE_MAXLENGTH 1000
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -1698,7 +1698,7 @@
 #elif ENABLED (GTA10)
   #define X_BED_SIZE 220
   #define Y_BED_SIZE 230
-  #define Z_MAX_POS 250
+  #define Z_MAX_POS 230
 #endif
 
 #if  ANY (GTA10, GTA20, GTA30) && ANY(MIXT, CYCLOPST, CYCLOPST)
@@ -2449,7 +2449,7 @@
 // Requires Testato, Koepel softwarewire library and
 // Andriy Golovnya's LiquidCrystal_AIP31068 library.
 //
-//#define YHCB2004
+#define YHCB2004
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
