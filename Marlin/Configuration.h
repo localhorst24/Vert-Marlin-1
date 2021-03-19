@@ -662,7 +662,8 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define MAXHOTENDTEMP (260 + 15) // Max hotend temp 260
+#define MAXHOTENDTEMP (260 + HOTEND_OVERSHOOT)
+#define MAXBEDTEMP    (100 + BED_OVERSHOOT)
 
 #define HEATER_0_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_1_MAXTEMP (MAXHOTENDTEMP)
@@ -672,8 +673,8 @@
 #define HEATER_5_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_6_MAXTEMP (MAXHOTENDTEMP)
 #define HEATER_7_MAXTEMP (MAXHOTENDTEMP)
-#define BED_MAXTEMP      (MAXHOTENDTEMP / 2)
-#define CHAMBER_MAXTEMP  (MAXHOTENDTEMP / 4)
+#define BED_MAXTEMP      (MAXBEDTEMP / 2)
+#define CHAMBER_MAXTEMP  (MAXBEDTEMP / 4)
 
 /**
  * Thermal Overshoot
