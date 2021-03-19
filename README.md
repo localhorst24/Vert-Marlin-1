@@ -2,7 +2,7 @@
 
 intended for use with my personally owned printers and testing.
 
-the only changes to this version of marlin is my personal configuration files this is 100% marlin source code.
+the only changes to this version of marlin is my personal configuration files, this is 100% marlin source code.
 
 ## The following links display every line of code i contributed to marlin.
 
