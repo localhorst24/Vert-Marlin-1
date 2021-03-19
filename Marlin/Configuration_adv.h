@@ -2211,7 +2211,7 @@
                                                   // This short retract is done immediately, before parking the nozzle.
   #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     30  // (mm/s) Unload filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_UNLOAD_ACCEL         5  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_UNLOAD_LENGTH      400  // (mm) The length of filament for a complete unload.
+  #define FILAMENT_CHANGE_UNLOAD_LENGTH      450  // (mm) The length of filament for a complete unload.
 //#define FILAMENT_CHANGE_UNLOAD_LENGTH      500  // (mm) The length of filament for a complete unload.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
@@ -2221,7 +2221,7 @@
   #if ENABLED (DIRECTDRIVE)
     #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH   20  // (mm) Slow length, to allow time to insert material.
   #else
-  #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH   200  // (mm) Slow length, to allow time to insert material.
+  #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH   100  // (mm) Slow length, to allow time to insert material.
   #endif
                                                   // 0 to disable start loading and skip to fast load only
   #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE  30  // (mm/s) Load filament feedrate. This can be pretty fast.
@@ -2230,8 +2230,8 @@
   #if ENABLED (DIRECTDRIVE)
     #define FILAMENT_CHANGE_FAST_LOAD_LENGTH    20
   #else
-  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   200  // (mm) Load length of filament, from extruder gear to nozzle.
-  #endif                                                //   For Bowden, the full length of the tube and nozzle.
+  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   350  // (mm) Load length of filament, from extruder gear to nozzle.
+  #endif                                          //   For Bowden, the full length of the tube and nozzle.
 
                                                   //   For direct drive, the full length of the nozzle.
 //#define ADVANCED_PAUSE_CONTINUOUS_PURGE         // Purge continuously up to the purge length until interrupted.
