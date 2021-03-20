@@ -1192,7 +1192,8 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+  #define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 25 }
+//#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
 //#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1273,7 +1274,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 
 /** define for iNTERGARTED FIRMWARE FOR GEEETECH**/
@@ -1464,8 +1465,8 @@
 #endif
 
 // X and Y axis travel speed (mm/min) between probes
-  #define XY_PROBE_FEEDRATE (133*60) // 8000
-//#define XY_PROBE_FEEDRATE (20*60)
+//#define XY_PROBE_FEEDRATE (133*60) // 8000
+  #define XY_PROBE_FEEDRATE (20*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (4*60)
@@ -1994,8 +1995,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
-//#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
+//#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
+  #define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
