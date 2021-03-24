@@ -412,7 +412,7 @@
  */
 #define HOTEND_IDLE_TIMEOUT
 #if ENABLED(HOTEND_IDLE_TIMEOUT)
-  #define HOTEND_IDLE_TIMEOUT_SEC (30*60)    // (seconds) Time without extruder movement to trigger protection
+  #define HOTEND_IDLE_TIMEOUT_SEC (10*60)    // (seconds) Time without extruder movement to trigger protection
   #define HOTEND_IDLE_MIN_TRIGGER   150     // (°C) Minimum temperature to enable hotend protection
   #define HOTEND_IDLE_NOZZLE_TARGET   0     // (°C) Safe temperature for the nozzle after timeout
   #define HOTEND_IDLE_BED_TARGET      0     // (°C) Safe temperature for the bed after timeout
@@ -440,9 +440,9 @@
   //#define CONTROLLER_FAN_PIN -1        // Set a custom pin for the controller fan
   //#define CONTROLLER_FAN_USE_Z_ONLY    // With this option only the Z axis is considered
   //#define CONTROLLER_FAN_IGNORE_Z      // Ignore Z stepper. Useful when stepper timeout is disabled.
-  #define CONTROLLERFAN_SPEED_MIN      0 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
+  #define CONTROLLERFAN_SPEED_MIN     50 // (0-255) Minimum speed. (If set below this value the fan is turned off.)
   #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
-  #define CONTROLLERFAN_SPEED_IDLE     0 // (0-255) Idle speed, used when motors are disabled
+  #define CONTROLLERFAN_SPEED_IDLE    50 // (0-255) Idle speed, used when motors are disabled
   #define CONTROLLERFAN_IDLE_TIME     60 // (seconds) Extra time to keep the fan running after disabling motors
   //#define CONTROLLER_FAN_EDITABLE      // Enable M710 configurable settings
   #if ENABLED(CONTROLLER_FAN_EDITABLE)
@@ -525,11 +525,11 @@
 #define COOLER_AUTO_FAN_PIN -1
 #define COOLER_FAN_PIN -1
 
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 50
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 60
 #define EXTRUDER_AUTO_FAN_SPEED 255   // 255 == full speed
 #define CHAMBER_AUTO_FAN_TEMPERATURE 30
 #define CHAMBER_AUTO_FAN_SPEED 255
-#define COOLER_AUTO_FAN_TEMPERATURE 18
+#define COOLER_AUTO_FAN_TEMPERATURE 20
 #define COOLER_AUTO_FAN_SPEED 255
 
 /**
@@ -706,7 +706,7 @@
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
 #define HOMING_BUMP_MM      { 5, 5, 5 }  // (mm) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 2 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_DIVISOR { 4, 4, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
 #define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
@@ -854,10 +854,10 @@
   #define TRAMMING_POINT_XY { { 40, 40 }, { X_BED_SIZE-40, 40 }, { X_BED_SIZE-40, Y_BED_SIZE-40 }, { 40, Y_BED_SIZE-40 } }
 
   // Define position names for probe points.
-  #define TRAMMING_POINT_NAME_1 "Front-L"
-  #define TRAMMING_POINT_NAME_2 "Front-R"
-  #define TRAMMING_POINT_NAME_3 "Back-R"
-  #define TRAMMING_POINT_NAME_4 "Back-L"
+  #define TRAMMING_POINT_NAME_1 "Front-Left"
+  #define TRAMMING_POINT_NAME_2 "Front-Right"
+  #define TRAMMING_POINT_NAME_3 "Back-Rright"
+  #define TRAMMING_POINT_NAME_4 "Back-Left"
 
   #define RESTORE_LEVELING_AFTER_G35    // Enable to restore leveling setup after operation
   #define REPORT_TRAMMING_MM            // Report Z deviation (mm) for each point relative to the first
@@ -1120,7 +1120,7 @@
 #endif
 
 // Play a beep when the feedrate is changed from the Status Screen
-//#define BEEP_ON_FEEDRATE_CHANGE
+#define BEEP_ON_FEEDRATE_CHANGE
 #if ENABLED(BEEP_ON_FEEDRATE_CHANGE)
   #define FEEDRATE_CHANGE_BEEP_DURATION  50
   #define FEEDRATE_CHANGE_BEEP_FREQUENCY 10
@@ -1178,7 +1178,7 @@
 #define STATUS_MESSAGE_SCROLLING
 
   #if ENABLED(SHOW_BOOTSCREEN)
-    #define BOOTSCREEN_TIMEOUT 6000      // (ms) Total Duration to display the boot screen(s)
+    #define BOOTSCREEN_TIMEOUT 3000      // (ms) Total Duration to display the boot screen(s)
     #if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
       #define BOOT_MARLIN_LOGO_SMALL     // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
     #endif
@@ -1186,12 +1186,12 @@
 
 // The timeout (in ms) to return to the status screen from sub-menus
 #if HAS_DISPLAY
-  #define LCD_TIMEOUT_TO_STATUS 60000
+  #define LCD_TIMEOUT_TO_STATUS 30000
 #endif
 
 // Add an 'M73' G-code to set the current percentage
 #if HAS_CHARACTER_LCD || HAS_GRAPHICAL_LCD
-    //#define LCD_SET_PROGRESS_MANUALLY
+    #define LCD_SET_PROGRESS_MANUALLY
 #endif
 
 // Show the E position (filament used) during printing
@@ -1209,13 +1209,13 @@
   #endif
 
   #if EITHER(HAS_MARLINUI_HD44780, IS_TFTGLCD_PANEL)
-    //#define LCD_PROGRESS_BAR            // Show a progress bar on HD44780 LCDs for SD printing
+    #define LCD_PROGRESS_BAR            // Show a progress bar on HD44780 LCDs for SD printing
     #if ENABLED(LCD_PROGRESS_BAR)
       #define PROGRESS_BAR_BAR_TIME 2000  // (ms) Amount of time to show the bar
       #define PROGRESS_BAR_MSG_TIME 3000  // (ms) Amount of time to show the status message
       #define PROGRESS_MSG_EXPIRE   0     // (ms) Amount of time to retain the status message (0=forever)
       //#define PROGRESS_MSG_ONCE         // Show the message for MSG_TIME then clear it
-      //#define LCD_PROGRESS_BAR_TEST     // Add a menu item to test the progress bar
+      #define LCD_PROGRESS_BAR_TEST     // Add a menu item to test the progress bar
     #endif
   #endif
 #endif
@@ -1254,7 +1254,7 @@
   //#define NO_SD_AUTOSTART                 // Remove auto#.g file support completely to save some Flash, SRAM
   //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
 
-  //#define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
+  #define BROWSE_MEDIA_ON_INSERT          // Open the file browser when media is inserted
 
   #define EVENT_GCODE_SD_ABORT "G27"      // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
 
@@ -1913,7 +1913,7 @@
 //
 // G2/G3 Arc Support
 //
-//#define ARC_SUPPORT             // Disable this feature to save ~3226 bytes  //8bit cant handle
+//define ARC_SUPPORT             // Disable this feature to save ~3226 bytes  //8bit cant handle
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT      1 // (mm) Length (or minimum length) of each arc segment
   //#define ARC_SEGMENTS_PER_R    1 // Max segment length, MM_PER = Min
@@ -1967,8 +1967,8 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_POST_DIR_DELAY 650
-//#define MINIMUM_STEPPER_PRE_DIR_DELAY 650
+#define MINIMUM_STEPPER_POST_DIR_DELAY 200
+#define MINIMUM_STEPPER_PRE_DIR_DELAY 200
 
 /**
  * Minimum stepper driver pulse width (in µs)
@@ -1981,7 +1981,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_PULSE 2
+#define MINIMUM_STEPPER_PULSE 2
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
@@ -1995,7 +1995,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MAXIMUM_STEPPER_RATE 250000
+#define MAXIMUM_STEPPER_RATE 500000
 
 // @section temperature
 
@@ -3387,7 +3387,8 @@
   #define STARTUP_COMMANDS "M163 S0 P0\nM163 S1 P1\nM164 S1\nM163 S0 P0.50\nM163 S1 P0.50\nM164 S2\nM163 S0 P0.75\nM163 S1 P0.25\nM164 S3\nM163 S0 P0.25\nM163 S1 P0.75\nM164 S4\nM163 S0 P0.33\nM163 S1 P0.67\nM164 S5\nM163 S0 P0.67\nM163 S1 P0.33\nM164 S6\nM163 S0 P0.60\nM163 S1 P0.40\nM164 S7\nM163 S0 P1\nM163 S1 P0\nM164 S0"
 #elif ENABLED (MIXT)
 // Full Set of 8 vtools for mixt
-  #define STARTUP_COMMANDS "M163 S0 P0\nM163 S1 P1\nM163 S2 P0\nM164 S1\nM163 S0 P0\nM163 S1 P0\nM163 S2 P1\nM164 S2\nM163 S0 P0.33\nM163 S1 P0.33\nM163 S2 P0.34\nM164 S3\nM163 S0 P0.25\nM163 S1 P0.75\nM163 S2 P0\nM164 S4\nM163 S0 P0\nM163 S1 P0.75\nM163 S2 P0.25\nM164 S5\nM163 S0 P0\nM163 S1 P0.50\nM163 S2 P0.50\nM164 S6\nM163 S0 P0.50\nM163 S1 P0.50\nM163 S2 P0\nM164 S7\nM163 S0 P1\nM163 S1 P0\nM163 S2 P0\nM164 S0"
+  #define STARTUP_COMMANDS "G28\nM163 S0 P0\nM163 S1 P1\nM163 S2 P0\nM164 S1\nM163 S0 P0\nM163 S1 P0\nM163 S2 P1\nM164 S2\nM163 S0 P0.33\nM163 S1 P0.33\nM163 S2 P0.34\nM164 S3\nM163 S0 P0.25\nM163 S1 P0.75\nM163 S2 P0\nM164 S4\nM163 S0 P0\nM163 S1 P0.75\nM163 S2 P0.25\nM164 S5\nM163 S0 P0\nM163 S1 P0.50\nM163 S2 P0.50\nM164 S6\nM163 S0 P0.50\nM163 S1 P0.50\nM163 S2 P0\nM164 S7\nM163 S0 P1\nM163 S1 P0\nM163 S2 P0\nM164 S0"
+//#define STARTUP_COMMANDS "M163 S0 P0\nM163 S1 P1\nM163 S2 P0\nM164 S1\nM163 S0 P0\nM163 S1 P0\nM163 S2 P1\nM164 S2\nM163 S0 P0.33\nM163 S1 P0.33\nM163 S2 P0.34\nM164 S3\nM163 S0 P0.25\nM163 S1 P0.75\nM163 S2 P0\nM164 S4\nM163 S0 P0\nM163 S1 P0.75\nM163 S2 P0.25\nM164 S5\nM163 S0 P0\nM163 S1 P0.50\nM163 S2 P0.50\nM164 S6\nM163 S0 P0.50\nM163 S1 P0.50\nM163 S2 P0\nM164 S7\nM163 S0 P1\nM163 S1 P0\nM163 S2 P0\nM164 S0"
 #else
   //#define STARTUP_COMMANDS ""
 #endif
@@ -3443,8 +3444,8 @@
 #if ENABLED(CUSTOM_USER_MENUS)
   #define CUSTOM_USER_MENU_TITLE "Tools"
   //#define USER_SCRIPT_DONE "M117 Running"
-  //#define USER_SCRIPT_AUDIBLE_FEEDBACK
-  #define USER_SCRIPT_RETURN  // Return to status screen after a script
+  #define USER_SCRIPT_AUDIBLE_FEEDBACK
+  //#define USER_SCRIPT_RETURN  // Return to status screen after a script
 
 #if ENABLED(PROBE_MANUALLY)
 

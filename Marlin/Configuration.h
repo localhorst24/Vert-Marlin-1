@@ -71,7 +71,7 @@
 // Author info of this build printed to the host during boot and M115
 #define STRING_CONFIG_H_AUTHOR "LARiFARi" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
-#define SHORT_BUILD_VERSION "Bugfixfix Build 504 "
+#define SHORT_BUILD_VERSION "Bugfix Build 504 YHCB2004 Fix"
 
 //START_HERE
 //-------------------------
@@ -175,7 +175,7 @@
 //(Probe Mod) enable 1 (Mod) probe type none = manual (stock) - No GTM32 probe support
 
 //#define TOUCHPROBE  // Enable Touch Probe (Bltouch / 3Dtouch)
-//#define FMP         // Enable Fixed Mounted Probe (Capacitive / Inductive)
+  #define FMP         // Enable Fixed Mounted Probe (Capacitive / Inductive)
 
 //(LCD Mod)
 
@@ -313,7 +313,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "LARiFARi's A10T"
+#define CUSTOM_MACHINE_NAME "LARiFARi's Drucker"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -877,8 +877,8 @@
 
 #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
 #define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
-#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+//#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+//#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
 //===========================================================================
 //============================= Mechanical Settings =========================
@@ -1172,7 +1172,7 @@
  * following movement settings. If fewer factors are given than the
  * total number of extruders, the last value applies to the rest.
  */
-#define DISTINCT_E_FACTORS
+//#define DISTINCT_E_FACTORS
 
 /**
  * Default Axis Steps Per Unit (steps/mm)
@@ -1192,7 +1192,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-  #define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 25 }
+  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 30, 25 }
 //#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
 //#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
 
@@ -1207,8 +1207,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-  #define DEFAULT_MAX_ACCELERATION      {  500,  500, 200, 10000 }
-//#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
+  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 200, 1000 } //#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1225,7 +1224,7 @@
  */
 #define DEFAULT_ACCELERATION           500       // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION   500       // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1000       // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION    600       // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1235,14 +1234,13 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK 10.0
   #define DEFAULT_YJERK 10.0
-  #define DEFAULT_ZJERK  0.4
-  //#define DEFAULT_ZJERK  0.3
+  #define DEFAULT_ZJERK  0.3  //#define DEFAULT_ZJERK 0.4
 
-  //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
+  #define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
@@ -1250,8 +1248,7 @@
   #endif
 #endif
 
-  #define DEFAULT_EJERK    5.0  // May be used by Linear Advance
-//#define DEFAULT_EJERK    3.5  // May be used by Linear Advance
+#define DEFAULT_EJERK    3.5  // May be used by Linear Advance  //Geeetech: 5.0
 
 /**
  * Junction Deviation Factor
@@ -1453,7 +1450,7 @@
  *   T |       3   | H <-- Example "3" (right+, front-)
  *     | 4         | T <-- Example "4" ( left-, front-)
  *     |    [-]    |
- *     O-- FRONT --+
+ *     +-- FRONT --+
  */
 #if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
   #define NOZZLE_TO_PROBE_OFFSET { -37, 0, -0.50 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ
@@ -1465,14 +1462,15 @@
 #endif
 
 // X and Y axis travel speed (mm/min) between probes
-//#define XY_PROBE_FEEDRATE (133*60) // 8000
-  #define XY_PROBE_FEEDRATE (20*60)
+  //#define XY_PROBE_FEEDRATE (133*60) // 8000
+  #define XY_PROBE_FEEDRATE (50*60) // 3000
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (4*60)
+#define Z_PROBE_FEEDRATE_FAST (5*60) // 300
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+  #define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 4)
+//#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
 
 /**
  * Probe Activation Switch
@@ -1510,7 +1508,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-  #define MULTIPLE_PROBING 3  // Probe 3 times take the average
+  #define MULTIPLE_PROBING 2  // Probe 3 times take the average
   #define EXTRA_PROBING    1
 
 /**
@@ -1527,14 +1525,14 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE    5 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  5
 
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -5
-#define Z_PROBE_OFFSET_RANGE_MAX  5
+#define Z_PROBE_OFFSET_RANGE_MIN -10
+#define Z_PROBE_OFFSET_RANGE_MAX  10
 
 // Enable the M48 repeatability test to test probe accuracy
 #if HAS_BED_PROBE || ENABLED (BLTOUCH)
@@ -1554,12 +1552,12 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+#define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
-  #define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
-  #define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
+  //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
+  //#define WAIT_FOR_HOTEND         // Wait for hotend to heat back up between probes (to improve accuracy & prevent cold extrude)
 #endif
-//#define PROBING_FANS_OFF          // Turn fans off when probing
+#define PROBING_FANS_OFF          // Turn fans off when probing
 //#define PROBING_STEPPERS_OFF      // Turn steppers off (unless needed to hold position) when probing
 #define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
@@ -1567,7 +1565,7 @@
 #define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
   #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define PROBING_BED_TEMP     50
+  #define PROBING_BED_TEMP     60
 #endif
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -1697,7 +1695,7 @@
   #define Z_MAX_POS 155
 #elif ENABLED (GTA10)
   #define X_BED_SIZE 220
-  #define Y_BED_SIZE 230
+  #define Y_BED_SIZE 225
   #define Z_MAX_POS 230
 #endif
 
@@ -1858,8 +1856,8 @@
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-//#define RESTORE_LEVELING_AFTER_G28
-#define ENABLE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
+//#define ENABLE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
@@ -1902,7 +1900,7 @@
     #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for G26.
     #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for G26.
     #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for G26 XY moves.
-    #define G26_XY_FEEDRATE_TRAVEL 100    // (mm/s) Feedrate for G26 XY travel moves.
+    #define G26_XY_FEEDRATE_TRAVEL 500    // (mm/s) Feedrate for G26 XY travel moves.
     #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
   #endif
 #endif
@@ -1988,15 +1986,13 @@
 //
 #if ANY (FIX_MOUNTED_PROBE, BLTOUCH)
 #define Z_SAFE_HOMING
-  //#define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE)/2))    // X point for Z homing when homing all axes (G28).
-  //#define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE)/2))    // Y point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_X_POINT X_CENTER    // X point for Z homing when homing all axes (G28).
   #define Z_SAFE_HOMING_Y_POINT Y_CENTER    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
-//#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
-  #define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
+//#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2032,7 +2028,6 @@
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
 //#define SKEW_CORRECTION
-
 #if ENABLED(SKEW_CORRECTION)
   #define XY_SKEW_FACTOR 0.0
   #define XZ_SKEW_FACTOR 0.0
@@ -2138,8 +2133,9 @@
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
   #define NOZZLE_PARK_POINT { X_MIN_POS, Y_BED_SIZE , 20 }
-  #define NOZZLE_PARK_XY_FEEDRATE (20*60)    // (mm/s) X and Y axes feedrate (also used for delta Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE  (4*60)     // (mm/s) Z axis feedrate (not used for delta printers)
+  #define NOZZLE_PARK_XY_FEEDRATE (8*60)     // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+//Viel zu hoch !?! - #define NOZZLE_PARK_XY_FEEDRATE (20*60)    // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE  (5*60)     // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
 /**
@@ -2210,10 +2206,11 @@
 
   // Require a minimum hotend temperature for cleaning
   #define NOZZLE_CLEAN_MIN_TEMP 170
-  //#define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
+  #define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
 
   // Explicit wipe G-code script applies to a G12 with no arguments.
   //#define WIPE_SEQUENCE_COMMANDS "G1 X-17 Y25 Z10 F4000\nG1 Z1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400\nG0 X-10.0 Y-9.0"
+  #define WIPE_SEQUENCE_COMMANDS "\nG1 X-15 Y25 Z10 F4000\nG1 Z1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400\nG0 X-15.0 Y-8.0"
 
 #endif
 
@@ -2370,7 +2367,7 @@
 // Use this option to override the number of step signals required to
 // move between next/prev menu items.
 //
-//#define ENCODER_STEPS_PER_MENU_ITEM 1
+#define ENCODER_STEPS_PER_MENU_ITEM 1
 
 /**
  * Encoder Direction Options
@@ -2410,7 +2407,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -2427,8 +2424,8 @@
 // Note: Test audio output with the G-Code:
 //  M300 S<frequency Hz> P<duration ms>
 //
-//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 50
-//#define LCD_FEEDBACK_FREQUENCY_HZ 10
+#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 50
+#define LCD_FEEDBACK_FREQUENCY_HZ 10
 
 //=============================================================================
 //======================== LCD / Controller Selection =========================
