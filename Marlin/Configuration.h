@@ -1463,7 +1463,7 @@
 
 // X and Y axis travel speed (mm/min) between probes
   //#define XY_PROBE_FEEDRATE (133*60) // 8000
-  #define XY_PROBE_FEEDRATE (50*60) // 3000
+  #define XY_PROBE_FEEDRATE (60*60) // 3600
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (5*60) // 300
@@ -1990,7 +1990,7 @@
   #define Z_SAFE_HOMING_Y_POINT Y_CENTER    // Y point for Z homing when homing all axes (G28).
 #endif
 
-// Homing speeds (mm/m)
+// Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
 //#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
 
@@ -2052,12 +2052,12 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS       // Persistent storage with M500 and M501
-//#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
-#define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
+  #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
+//#define DISABLE_M503          // Saves ~2700 bytes of PROGMEM. Disable for release!
+  #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
+//#define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-  #define EEPROM_AUTO_INIT    // Init EEPROM automatically on any errors.
+  #define EEPROM_AUTO_INIT      // Init EEPROM automatically on any errors.
 #endif
 
 //
@@ -2133,9 +2133,10 @@
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
   #define NOZZLE_PARK_POINT { X_MIN_POS, Y_BED_SIZE , 20 }
-  #define NOZZLE_PARK_XY_FEEDRATE (8*60)     // (mm/s) X and Y axes feedrate (also used for delta Z axis)
-//Viel zu hoch !?! - #define NOZZLE_PARK_XY_FEEDRATE (20*60)    // (mm/s) X and Y axes feedrate (also used for delta Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE  (5*60)     // (mm/s) Z axis feedrate (not used for delta printers)
+  #define NOZZLE_PARK_XY_FEEDRATE (60*60)     // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE  (30*60)     // (mm/s) Z axis feedrate (not used for delta printers)
+  //#define NOZZLE_PARK_XY_FEEDRATE (20*60)     // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  //#define NOZZLE_PARK_Z_FEEDRATE  (10*60)     // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
 /**
