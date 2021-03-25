@@ -248,7 +248,7 @@
  */
 
 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
-#define SHOW_BOOTSCREEN
+//#define SHOW_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
 //#define SHOW_CUSTOM_BOOTSCREEN
@@ -700,8 +700,8 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  #define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_DEBUG             // Sends debug data to the serial port.
   //#define PID_OPENLOOP 1        // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
@@ -1172,7 +1172,7 @@
  * following movement settings. If fewer factors are given than the
  * total number of extruders, the last value applies to the rest.
  */
-//#define DISTINCT_E_FACTORS
+#define DISTINCT_E_FACTORS
 
 /**
  * Default Axis Steps Per Unit (steps/mm)
@@ -1183,8 +1183,8 @@
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 }
 #elif ENABLED (MULTIEXTRUDER)
-  #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 405.13 } // geared extruder found on M & T variants
-  //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 }
+    #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 405.13 }
+  //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 }    // geared extruder found on M & T variants
 #endif
 
 /**
@@ -2055,8 +2055,8 @@
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
   #define EEPROM_SETTINGS       // Persistent storage with M500 and M501
-//#define DISABLE_M503          // Saves ~2700 bytes of PROGMEM. Disable for release!
-  #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
+  #define DISABLE_M503          // Saves ~2700 bytes of PROGMEM. Disable for release!
+//#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 //#define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
   #define EEPROM_AUTO_INIT      // Init EEPROM automatically on any errors.
