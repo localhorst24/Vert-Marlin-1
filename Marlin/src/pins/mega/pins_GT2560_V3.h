@@ -89,8 +89,9 @@
 //
 // Power Recovery
 //
-#define POWER_LOSS_PIN                        69  // Pin to detect power loss
-#define POWER_LOSS_STATE                     LOW
+  #define POWER_LOSS_PIN                        69  // Pin to detect power loss
+  #define POWER_LOSS_STATE                     HIGH // *untested*
+//#define POWER_LOSS_STATE                     LOW
 
 //
 // Steppers
