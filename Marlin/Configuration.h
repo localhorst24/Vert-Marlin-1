@@ -71,7 +71,7 @@
 // Author info of this build printed to the host during boot and M115
 #define STRING_CONFIG_H_AUTHOR "LARiFARi" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
-#define SHORT_BUILD_VERSION "Bugfix Build 504 YHCB2004 Fix"
+#define SHORT_BUILD_VERSION "Bugfix B504 YHCB2004 Fix"
 
 //START_HERE
 //-------------------------
@@ -1929,7 +1929,7 @@
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
 
   #if HAS_BED_PROBE || ENABLED (BLTOUCH)
-    //#define LEVEL_CORNERS_USE_PROBE
+    #define LEVEL_CORNERS_USE_PROBE
   #endif
 
   #if ENABLED(LEVEL_CORNERS_USE_PROBE)

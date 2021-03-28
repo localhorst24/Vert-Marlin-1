@@ -1122,8 +1122,8 @@
 // Play a beep when the feedrate is changed from the Status Screen
 #define BEEP_ON_FEEDRATE_CHANGE
 #if ENABLED(BEEP_ON_FEEDRATE_CHANGE)
-  #define FEEDRATE_CHANGE_BEEP_DURATION  50
-  #define FEEDRATE_CHANGE_BEEP_FREQUENCY 10
+  #define FEEDRATE_CHANGE_BEEP_DURATION  100
+  #define FEEDRATE_CHANGE_BEEP_FREQUENCY  10
 #endif
 
 #if HAS_LCD_MENU
@@ -3440,8 +3440,8 @@
  * User-defined menu items to run custom G-code.
  * Up to 25 may be defined, but the actual number is LCD-dependent.
  */
-#define CUSTOM_USER_MENUS
-#if ENABLED(CUSTOM_USER_MENUS)
+#define CUSTOM_MENU_MAIN
+#if ENABLED(CUSTOM_MENU_MAIN)
   #define CUSTOM_USER_MENU_TITLE "Tools"
   //#define USER_SCRIPT_DONE "M117 Running"
   #define USER_SCRIPT_AUDIBLE_FEEDBACK
@@ -3489,10 +3489,10 @@
   #define USER_GCODE_13 "G4 S30"
 
   #define USER_DESC_14 "Auto Cold Pull"
-  #define USER_GCODE_14 "G28\nM83\nG92 E0.00\nG21\nG1 X100 Y100 Z30\nM109 S200\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
+  #define USER_GCODE_14 "M117 Cold Pull...\nG28\nM83\nG92 E0.00\nG21\nG1 X100 Y100 Z30\nM109 S200\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
 
   #define USER_DESC_15 "Nozzle Change"
-  #define USER_GCODE_15 "M104 S2500\nM117 Setting Nozzle to 200C\nG4 s3\nM0 Click to continue"
+  #define USER_GCODE_15 "M117 Setting Nozzle to 200C\nM104 S200\nG4 S3\nM0 Click to continue"
 
   #define USER_DESC_16 "Reset EEPROM"
   #define USER_GCODE_16 "M502\nM500\nM500\nM117 EEPROM values restored\nG4 S3\nM0 Click to continue"
@@ -3547,20 +3547,20 @@
   #define USER_DESC_16 "Cold Extrude Off"
   #define USER_GCODE_16 "M302 P1"
 
-  #define USER_DESC_17 "Dwell 30S"
-  #define USER_GCODE_17 "G4 S30"
+  #define USER_DESC_17 "G26 Mesh Validation Pattern"
+  #define USER_GCODE_17 "G26 L1 Q5"
 
   #define USER_DESC_18 "Zero Z Offset"
-  #define USER_GCODE_18 "M851 Z0.00\nM500\nM117 Z Probe Offset Zeroed\nG4 S3\nM0 Click to continue"
+  #define USER_GCODE_18 "M851 Z0.00\nM500\nM117 Z Probe Offset Zeroed\nG4 S3"
 
-  #define USER_DESC_19 "Auto Cold Pull"
-  #define USER_GCODE_19 "G28\nM83\nG92 E0.00\nG21\nG1 X100 Y100 Z30\nM109 S200\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
+  #define USER_DESC_19 "Cold Pull"
+  #define USER_GCODE_19 "M117 Cold Pull... wait!\nM107\nM104 S230\nG28\nM83\nG21\nG1 X-15 Y-8 Z10\nM109 S230\nM0 Push filaments throught Nozzle - click if ready.\nM106 S255\nM117 wait for 85°C cool down...\nM109 R85\nM107\nM18 E\nM0 Pull your filament out now!\nM109 S0\nM84"
 
   #define USER_DESC_20 "Nozzle Change"
-  #define USER_GCODE_20 "M104 S200\nM117 Setting Nozzle to 200C\nG4 s3\nM0 Click to continue"
+  #define USER_GCODE_20 "M117 Setting Nozzle to 200°C...\nM104 S200\nM300 S440 P200\nM300 S660 P250\nM300 S880 P300\nM0 Change Nozzle now... Click if ready."
 
   #define USER_DESC_21 "Reset EEPROM"
-  #define USER_GCODE_21 "M502\nM500\nM500\nM117 EEPROM values restored\nG4 S3\nM0 Click to continue"
+  #define USER_GCODE_21 "M502\nM500\nM500\nM117 EEPROM values restored\nG4 S3"
 
  #endif
 #endif
