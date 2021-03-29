@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Creality/CR-10S/BigTreeTech SKR Pro v1.2"
+
 /**
  * Configuration_adv.h
  *

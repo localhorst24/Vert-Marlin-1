@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Creality/Ender-5 Pro/BigTreeTech SKR E3 Turbo"
+
 /**
  * Configuration_adv.h
  *

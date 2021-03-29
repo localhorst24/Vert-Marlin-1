@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Eryone/Thinker SE"
+
 /**
  * Configuration_adv.h
  *

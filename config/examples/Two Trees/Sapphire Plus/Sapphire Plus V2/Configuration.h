@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Two Trees/Sapphire Plus/Sapphire Plus V2"
+
 //#define SAPPHIRE_PLUS_MKS_UI
 //#define SAPPHIRE_PLUS_BLTOUCH
 //#define SAPPHIRE_PLUS_TMC_UART

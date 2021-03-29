@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Prusa/MK3S-BigTreeTech-BTT002"
+
 /**
  * Configuration.h
  *

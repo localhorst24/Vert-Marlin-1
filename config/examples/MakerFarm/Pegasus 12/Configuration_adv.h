@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "MakerFarm/Pegasus 12"
+
 /**
  * Configuration_adv.h
  *

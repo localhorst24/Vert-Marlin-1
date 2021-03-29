@@ -22,6 +22,8 @@
 #pragma once
 
 
+#define CONFIG_EXAMPLES_DIR "Two Trees/BlueR Plus"
+
 /**
  * Configuration.h
  *

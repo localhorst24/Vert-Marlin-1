@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "AnyCubic/Mega Zero/Anycubic V1"
+
 /**
  * Configuration_adv.h
  *

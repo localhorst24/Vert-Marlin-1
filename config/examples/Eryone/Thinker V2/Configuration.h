@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Eryone/Thinker V2"
+
 //#define THINKERV2_BLTOUCH  // Enable for an installed BLTOUCH
 
 /**

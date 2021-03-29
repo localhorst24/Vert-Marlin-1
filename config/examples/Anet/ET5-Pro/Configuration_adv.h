@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Anet/ET5-Pro"
+
 /**
  * Configuration_adv.h
  *

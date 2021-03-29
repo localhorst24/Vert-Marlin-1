@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Creality/Ender-6"
+
 // Enable this option for BLTouch support
 //#define ENABLE_BLTOUCH_PROBE
 

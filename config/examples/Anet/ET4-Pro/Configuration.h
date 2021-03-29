@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "Anet/ET4-Pro"
+
 /**
  * Configuration.h
  *

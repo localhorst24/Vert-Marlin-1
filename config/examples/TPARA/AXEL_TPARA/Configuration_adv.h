@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "TPARA/AXEL_TPARA"
+
 /**
  * Configuration_adv.h
  *

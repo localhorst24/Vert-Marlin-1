@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#define CONFIG_EXAMPLES_DIR "AnyCubic/i3 Mega"
+
 //#define I3MEGA_HAS_BLTOUCH
 //#define I3MEGA_HAS_TMC2208
 
