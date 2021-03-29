@@ -2032,7 +2032,7 @@
 // Requires Testato, Koepel softwarewire library and
 // Andriy Golovnya's LiquidCrystal_AIP31068 library.
 //
-#define YHCB2004
+//#define YHCB2004
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
