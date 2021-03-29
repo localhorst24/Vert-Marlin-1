@@ -39,3 +39,8 @@ applet/
 
 # System files
 .DS_Store
+.pio/build/mega2560/.sconsign39.dblite
+.pio/build/mega2560/firmware.elf
+.pio/build/mega2560/firmware.hex
+Marlin/Marlin.ino.cpp
+.gitignore
