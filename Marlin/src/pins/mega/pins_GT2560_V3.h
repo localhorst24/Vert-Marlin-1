@@ -126,13 +126,13 @@
 //
 // Heaters / Fans
 //
-#define HEATER_0_PIN                          10
-#define HEATER_1_PIN                           3
-#define HEATER_2_PIN                           2
-#define HEATER_BED_PIN                         4
-#define FAN_PIN                                9
-#define FAN1_PIN                               8
-#define FAN2_PIN                               7
+  #define HEATER_0_PIN                          10
+  #define HEATER_1_PIN                           3
+  #define HEATER_2_PIN                          -1  // 2 - Vert
+  #define HEATER_BED_PIN                         4
+  #define FAN_PIN                                9
+//#define FAN1_PIN                               8
+//#define FAN2_PIN                               7
 
 //
 // Misc. Functions
@@ -155,18 +155,18 @@
 //
 #define BEEPER_PIN                            18
 
-#if ENABLED(YHCB2004)
+#if ENABLED (YHCB2004)
   #ifndef YHCB2004_CLK
     #define YHCB2004_CLK                      5
     #define DIO52 YHCB2004_CLK
   #endif
   #ifndef YHCB2004_MOSI
-    #define YHCB2004_MOSI                     36
-    #define DIO51 YHCB2004_MOSI
+    #define YHCB2004_MOSI                     21
+    #define DIO50 YHCB2004_MOSI
   #endif
   #ifndef YHCB2004_MISO
-    #define YHCB2004_MISO                     21
-    #define DIO50 YHCB2004_MISO
+    #define YHCB2004_MISO                     36
+    #define DIO51 YHCB2004_MISO
   #endif
 #elif HAS_WIRED_LCD
   #ifndef LCD_PINS_RS
