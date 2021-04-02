@@ -81,6 +81,9 @@
 #ifndef FIL_RUNOUT2_PIN
   #define FIL_RUNOUT2_PIN                     67
 #endif
+#ifndef FIL_RUNOUT3_PIN
+  #define FIL_RUNOUT3_PIN                     54
+#endif
 
 //
 // Power Recovery
@@ -131,8 +134,8 @@
 #define HEATER_2_PIN                           2
 #define HEATER_BED_PIN                         4
 #define FAN_PIN                                9
-#define FAN1_PIN                               8
-#define FAN2_PIN                               7
+//#define FAN1_PIN                               8
+//#define FAN2_PIN                               7
 
 //
 // Misc. Functions
