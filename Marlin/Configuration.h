@@ -1720,6 +1720,25 @@
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
+#define PREHEAT_3_LABEL       "PETG"
+#define PREHEAT_3_TEMP_HOTEND  250
+#define PREHEAT_3_TEMP_BED      70
+#define PREHEAT_3_TEMP_CHAMBER  35
+#define PREHEAT_3_FAN_SPEED      0 // Value from 0 to 255
+
+#define PREHEAT_4_LABEL       "TPU"
+#define PREHEAT_4_TEMP_HOTEND  240
+#define PREHEAT_4_TEMP_BED      90
+#define PREHEAT_4_TEMP_CHAMBER  35
+#define PREHEAT_4_FAN_SPEED      0 // Value from 0 to 255
+/*
+#define PREHEAT_5_LABEL       "XXX"
+#define PREHEAT_5_TEMP_HOTEND  000
+#define PREHEAT_5_TEMP_BED      00
+#define PREHEAT_5_TEMP_CHAMBER  35
+#define PREHEAT_5_FAN_SPEED      0 // Value from 0 to 255
+*/
+
 /**
  * Nozzle Park
  *
