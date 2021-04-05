@@ -87,7 +87,7 @@
  */
 
 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
-#define SHOW_BOOTSCREEN
+//#define SHOW_BOOTSCREEN
 
 //#define SHOW_BOOTSCREEN
 
@@ -136,7 +136,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Geeetech A10T"
+#define CUSTOM_MACHINE_NAME "A10T"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -1950,8 +1950,6 @@
  *
  * :[0:'Classic', 1:'Průša']
  */
-#define LCD_INFO_SCREEN_STYLE 0
-
 #define LCD_INFO_SCREEN_STYLE 1
 
 /**
