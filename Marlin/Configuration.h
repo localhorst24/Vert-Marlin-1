@@ -71,8 +71,11 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
+//#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 #define STRING_CONFIG_H_AUTHOR "localhorst24" // Who made the changes.
 #define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
+
+/**
  * *** VENDORS PLEASE READ ***
  *
  * Marlin allows you to add a custom boot image for Graphical LCDs.
@@ -87,6 +90,8 @@
 #define SHOW_BOOTSCREEN
 
 //#define SHOW_BOOTSCREEN
+
+// Show the bitmap in Marlin/_Bootscreen.h on startup.
 //#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
