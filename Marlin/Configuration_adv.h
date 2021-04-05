@@ -3432,33 +3432,114 @@
  */
 
 // Custom Menu: Main Menu
-//#define CUSTOM_MENU_MAIN
+#define CUSTOM_MENU_MAIN
 #if ENABLED(CUSTOM_MENU_MAIN)
-  //#define CUSTOM_MENU_MAIN_TITLE "Custom Commands"
+//#define CUSTOM_MENU_MAIN_TITLE "Custom Commands"
   #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 User Script Done"
   #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
-  //#define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
+//#define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
   #define MAIN_MENU_ITEM_1_DESC "Home & UBL Info"
   #define MAIN_MENU_ITEM_1_GCODE "G28\nG29 W"
-  //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
+//#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
   #define MAIN_MENU_ITEM_2_DESC "Preheat for " PREHEAT_1_LABEL
   #define MAIN_MENU_ITEM_2_GCODE "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
-  //#define MAIN_MENU_ITEM_2_CONFIRM
+//#define MAIN_MENU_ITEM_2_CONFIRM
 
-  //#define MAIN_MENU_ITEM_3_DESC "Preheat for " PREHEAT_2_LABEL
-  //#define MAIN_MENU_ITEM_3_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
-  //#define MAIN_MENU_ITEM_3_CONFIRM
+  #define MAIN_MENU_ITEM_3_DESC "Preheat for " PREHEAT_2_LABEL
+  #define MAIN_MENU_ITEM_3_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
+//#define MAIN_MENU_ITEM_3_CONFIRM
 
-  //#define MAIN_MENU_ITEM_4_DESC "Heat Bed/Home/Level"
-  //#define MAIN_MENU_ITEM_4_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
-  //#define MAIN_MENU_ITEM_4_CONFIRM
+  #define MAIN_MENU_ITEM_4_DESC "Heat Bed/Home/Level"
+  #define MAIN_MENU_ITEM_4_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
+  #define MAIN_MENU_ITEM_4_CONFIRM
 
-  //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
-  //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
-  //#define MAIN_MENU_ITEM_5_CONFIRM
+  #define MAIN_MENU_ITEM_5_DESC "Home & Info"
+  #define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
+  #define MAIN_MENU_ITEM_5_CONFIRM
+
+  #define MAIN_MENU_ITEM_6_DESC "Auto Cold Pull"
+  #define MAIN_MENU_ITEM_6_GCODE "M117 Cold Pull...\nG28\nM83\nG92 E0.00\nG21\nG1 X100 Y100 Z30\nM109 S200\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
+  #define MAIN_MENU_ITEM_6_CONFIRM
+
+  #define MAIN_MENU_ITEM_7_DESC "Nozzle change"
+  #define MAIN_MENU_ITEM_7_GCODE "M117 Setting Nozzle to 200C\nM104 S200\nG4 S3\nM0 Click to continue"
+  #define MAIN_MENU_ITEM_7_CONFIRM
+
+  #define MAIN_MENU_ITEM_8_DESC "Probe UBL Slot 0" //Use probe to setup UBL.
+  #define MAIN_MENU_ITEM_8_GCODE "M117 Probe UBL Slot 0...\nG28\nM190 S65\nG29 P1\nG29 P3\nG29 S0\nG29 A\nG29 F 10.0\nM500\nM140 S0\nM0 Mesh Saved in Slot 0"
+  #define MAIN_MENU_ITEM_8_CONFIRM
+
+  #define MAIN_MENU_ITEM_9_DESC "Probe UBL Slot 1" //Use probe to setup UBL.
+  #define MAIN_MENU_ITEM_9_GCODE "M117 Probe UBL Slot 1...\nG28\nM190 S65\nG29 P1\nG29 P3\nG29 S1\nG29 A\nG29 F 10.0\nM500\nM140 S0\nM0 Mesh Saved in Slot 1"
+  #define MAIN_MENU_ITEM_9_CONFIRM
+
+  #define MAIN_MENU_ITEM_10_DESC "Probe UBL Slot 2" //Use probe to setup UBL.
+  #define MAIN_MENU_ITEM_10_GCODE "M117 Probe UBL Slot 2...\nG28\nM190 S65\nG29 P1\nG29 P3\nG29 S2\nG29 A\nG29 F 10.0\nM500\nM140 S0\nM0 Mesh Saved in Slot 2"
+  #define MAIN_MENU_ITEM_10_CONFIRM
+
+  #define MAIN_MENU_ITEM_11_DESC "Adjust Point Near" //Adjust nearest mesh point
+  #define MAIN_MENU_ITEM_11_GCODE "G29 P4 R1\nM500"
+  #define MAIN_MENU_ITEM_11_CONFIRM
+
+  #define MAIN_MENU_ITEM_12_DESC "Hotend PIDtune"
+  #define MAIN_MENU_ITEM_12_GCODE "M303 U1 E0 S200 C8\nM500"
+  #define MAIN_MENU_ITEM_12_CONFIRM
+
+  #define MAIN_MENU_ITEM_13_DESC "Bed PIDtune"
+  #define MAIN_MENU_ITEM_13_GCODE "M303 U1 E-1 S60 C8\nM500"
+  #define MAIN_MENU_ITEM_13_CONFIRM
+
+  #define MAIN_MENU_ITEM_14_DESC "Park Toolhead"
+  #define MAIN_MENU_ITEM_14_GCODE "G27"
+//#define MAIN_MENU_ITEM_14_CONFIRM
+
+  #define MAIN_MENU_ITEM_15_DESC "Enable Cold Extrude"
+  #define MAIN_MENU_ITEM_15_GCODE "M302 P1"
+  #define MAIN_MENU_ITEM_15_CONFIRM
+
+  #define MAIN_MENU_ITEM_16_DESC "Disable Cold Extrude"
+  #define MAIN_MENU_ITEM_16_GCODE "M302 P0"
+//#define MAIN_MENU_ITEM_16_CONFIRM
+
+  #define MAIN_MENU_ITEM_17_DESC "Report Setting M503"
+  #define MAIN_MENU_ITEM_17_GCODE "M503 S1"
+//#define MAIN_MENU_ITEM_17_CONFIRM
+
+//#define MAIN_MENU_ITEM_18_DESC "G26 Mesh Validation Pattern"
+//#define MAIN_MENU_ITEM_18_GCODE "G26 L1 Q5"
+//#define MAIN_MENU_ITEM_18_CONFIRM
+
+//#define MAIN_MENU_ITEM_19_DESC "Name"
+//#define MAIN_MENU_ITEM_19_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_19_CONFIRM
+
+//#define MAIN_MENU_ITEM_20_DESC "Name"
+//#define MAIN_MENU_ITEM_20_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_20_CONFIRM
+
+//#define MAIN_MENU_ITEM_21_DESC "Name"
+//#define MAIN_MENU_ITEM_21_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_21_CONFIRM
+
+//#define MAIN_MENU_ITEM_22_DESC "Name"
+//#define MAIN_MENU_ITEM_22_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_22_CONFIRM
+
+//#define MAIN_MENU_ITEM_23_DESC "Name"
+//#define MAIN_MENU_ITEM_23_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_23_CONFIRM
+
+//#define MAIN_MENU_ITEM_24_DESC "Name"
+//#define MAIN_MENU_ITEM_24_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_24_CONFIRM
+
+//#define MAIN_MENU_ITEM_25_DESC "Name"
+//#define MAIN_MENU_ITEM_25_GCODE "Mxxx"
+//#define MAIN_MENU_ITEM_25_CONFIRM
+
 #endif
 
 // Custom Menu: Configuration Menu
