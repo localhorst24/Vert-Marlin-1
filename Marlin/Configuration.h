@@ -1934,6 +1934,8 @@
 #define LCD_INFO_SCREEN_STYLE 0
 
 #define LCD_INFO_SCREEN_STYLE 1
+
+/**
  * SD CARD
  *
  * SD Card support is disabled by default. If your controller has an SD slot,
