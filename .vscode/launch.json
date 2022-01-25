@@ -29,6 +29,16 @@
             "projectEnvName": "mega2560",
             "toolchainBinDir": "C:/Users/christian.larisch/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (without uploading)",
+            "executable": "C:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/build/mega2560/firmware.elf",
+            "projectEnvName": "mega2560",
+            "toolchainBinDir": "C:/Users/christian.larisch/.platformio/packages/toolchain-atmelavr/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "loadMode": "manual"
         }
     ]
 }
