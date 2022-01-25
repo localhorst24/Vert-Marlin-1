@@ -601,12 +601,6 @@
   #error "PROBE_TEMP_COMPENSATION is now set using the PTC_PROBE, PTC_BED, PTC_HOTEND options."
 #elif defined(BTC_PROBE_TEMP)
   #error "BTC_PROBE_TEMP is now PTC_PROBE_TEMP."
-#elif defined(LCD_SCREEN_ROT_90)
-  #error "LCD_SCREEN_ROT_90 is now LCD_SCREEN_ROTATE with a value of 90."
-#elif defined(LCD_SCREEN_ROT_180)
-  #error "LCD_SCREEN_ROT_180 is now LCD_SCREEN_ROTATE with a value of 180."
-#elif defined(LCD_SCREEN_ROT_270)
-  #error "LCD_SCREEN_ROT_270 is now LCD_SCREEN_ROTATE with a value of 270."
 #endif
 
 #if MB(DUE3DOM_MINI) && PIN_EXISTS(TEMP_2) && DISABLED(TEMP_SENSOR_BOARD)
@@ -797,12 +791,6 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
   #error "Enable only one of ENDSTOPPULLUP_Y_MAX or ENDSTOPPULLDOWN_Y_MAX."
 #elif BOTH(ENDSTOPPULLUP_ZMAX, ENDSTOPPULLDOWN_ZMAX)
   #error "Enable only one of ENDSTOPPULLUP_Z_MAX or ENDSTOPPULLDOWN_Z_MAX."
-#elif BOTH(ENDSTOPPULLUP_IMAX, ENDSTOPPULLDOWN_IMAX)
-  #error "Enable only one of ENDSTOPPULLUP_I_MAX or ENDSTOPPULLDOWN_I_MAX."
-#elif BOTH(ENDSTOPPULLUP_JMAX, ENDSTOPPULLDOWN_JMAX)
-  #error "Enable only one of ENDSTOPPULLUP_J_MAX or ENDSTOPPULLDOWN_J_MAX."
-#elif BOTH(ENDSTOPPULLUP_KMAX, ENDSTOPPULLDOWN_KMAX)
-  #error "Enable only one of ENDSTOPPULLUP_K_MAX or ENDSTOPPULLDOWN_K_MAX."
 #elif BOTH(ENDSTOPPULLUP_XMIN, ENDSTOPPULLDOWN_XMIN)
   #error "Enable only one of ENDSTOPPULLUP_X_MIN or ENDSTOPPULLDOWN_X_MIN."
 #elif BOTH(ENDSTOPPULLUP_YMIN, ENDSTOPPULLDOWN_YMIN)
@@ -1429,7 +1417,9 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
  * Allow only extra axis codes that do not conflict with G-code parameter names
  */
 #if HAS_I_AXIS
-  #if !defined(I_MIN_POS) || !defined(I_MAX_POS)
+  #if AXIS4_NAME != 'A' && AXIS4_NAME != 'B' && AXIS4_NAME != 'C' && AXIS4_NAME != 'U' && AXIS4_NAME != 'V' && AXIS4_NAME != 'W'
+    #error "AXIS4_NAME can only be one of 'A', 'B', 'C', 'U', 'V', or 'W'."
+  #elif !defined(I_MIN_POS) || !defined(I_MAX_POS)
     #error "I_MIN_POS and I_MAX_POS are required with LINEAR_AXES >= 4."
   #elif !defined(I_HOME_DIR)
     #error "I_HOME_DIR is required with LINEAR_AXES >= 4."
@@ -1440,6 +1430,8 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
 #if HAS_J_AXIS
   #if AXIS5_NAME == AXIS4_NAME
     #error "AXIS5_NAME must be unique."
+  #elif AXIS5_NAME != 'A' && AXIS5_NAME != 'B' && AXIS5_NAME != 'C' && AXIS5_NAME != 'U' && AXIS5_NAME != 'V' && AXIS5_NAME != 'W'
+    #error "AXIS5_NAME can only be one of 'A', 'B', 'C', 'U', 'V', or 'W'."
   #elif !defined(J_MIN_POS) || !defined(J_MAX_POS)
     #error "J_MIN_POS and J_MAX_POS are required with LINEAR_AXES >= 5."
   #elif !defined(J_HOME_DIR)
@@ -1451,6 +1443,8 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
 #if HAS_K_AXIS
   #if AXIS6_NAME == AXIS5_NAME || AXIS6_NAME == AXIS4_NAME
     #error "AXIS6_NAME must be unique."
+  #elif AXIS6_NAME != 'A' && AXIS6_NAME != 'B' && AXIS6_NAME != 'C' && AXIS6_NAME != 'U' && AXIS6_NAME != 'V' && AXIS6_NAME != 'W'
+    #error "AXIS6_NAME can only be one of 'A', 'B', 'C', 'U', 'V', or 'W'."
   #elif !defined(K_MIN_POS) || !defined(K_MAX_POS)
     #error "K_MIN_POS and K_MAX_POS are required with LINEAR_AXES >= 6."
   #elif !defined(K_HOME_DIR)
@@ -1515,8 +1509,8 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
  */
 #if 1 < 0 \
   + (DISABLED(BLTOUCH) && HAS_Z_SERVO_PROBE) \
-  + COUNT_ENABLED(PROBE_MANUALLY, BLTOUCH, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, RACK_AND_PINION_PROBE, SENSORLESS_PROBING, MAGLEV4)
-  #error "Please enable only one probe option: PROBE_MANUALLY, SENSORLESS_PROBING, BLTOUCH, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, MAGLEV4, or Z Servo."
+  + COUNT_ENABLED(PROBE_MANUALLY, BLTOUCH, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, RACK_AND_PINION_PROBE, SENSORLESS_PROBING)
+  #error "Please enable only one probe option: PROBE_MANUALLY, SENSORLESS_PROBING, BLTOUCH, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, or Z Servo."
 #endif
 
 #if HAS_BED_PROBE
@@ -1619,19 +1613,6 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
   #endif
 
   /**
-   * MagLev V4 probe requirements
-   */
-  #if ENABLED(MAGLEV4)
-    #if !PIN_EXISTS(MAGLEV_TRIGGER)
-      #error "MAGLEV4 requires MAGLEV_TRIGGER_PIN to be defined."
-    #elif DISABLED(Z_SAFE_HOMING)
-      #error "MAGLEV4 requires Z_SAFE_HOMING."
-    #elif MAGLEV_TRIGGER_DELAY != 15
-      #error "MAGLEV_TRIGGER_DELAY should not be changed. Comment out this line to continue."
-    #endif
-  #endif
-
-  /**
    * Require pin options and pins to be defined
    */
   #if ENABLED(SENSORLESS_PROBING)
@@ -1718,11 +1699,11 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
    * Require some kind of probe for bed leveling and probe testing
    */
   #if HAS_ABL_NOT_UBL && !PROBE_SELECTED
-    #error "Auto Bed Leveling requires either PROBE_MANUALLY, SENSORLESS_PROBING, or a real probe."
+    #error "Auto Bed Leveling requires one of these: PROBE_MANUALLY, SENSORLESS_PROBING, BLTOUCH, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, or a Z Servo."
   #endif
 
   #if ENABLED(Z_MIN_PROBE_REPEATABILITY_TEST)
-    #error "Z_MIN_PROBE_REPEATABILITY_TEST requires a real probe."
+    #error "Z_MIN_PROBE_REPEATABILITY_TEST requires a probe: FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, BLTOUCH, SOLENOID_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, or Z Servo."
   #endif
 
 #endif
@@ -2764,8 +2745,8 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
   #error "Please enable only one of TFT_INTERFACE_SPI or TFT_INTERFACE_SPI."
 #endif
 
-#if defined(LCD_SCREEN_ROTATE) && LCD_SCREEN_ROTATE != 0 && LCD_SCREEN_ROTATE != 90 && LCD_SCREEN_ROTATE != 180 && LCD_SCREEN_ROTATE != 270
-  #error "LCD_SCREEN_ROTATE must be 0, 90, 180, or 270."
+#if MANY(LCD_SCREEN_ROT_0, LCD_SCREEN_ROT_90, LCD_SCREEN_ROT_180, LCD_SCREEN_ROT_270)
+  #error "Please enable only one LCD_SCREEN_ROT_* option: 0, 90, 180, or 270."
 #endif
 
 #if MANY(TFT_RES_320x240, TFT_RES_480x272, TFT_RES_480x320, TFT_RES_1024x600)
@@ -3323,7 +3304,7 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
  * L64XX requirement
  */
 #if HAS_L64XX && HAS_I_AXIS
-  #error "L64XX requires LINEAR_AXES <= 3. Homing with L64XX is not yet implemented for LINEAR_AXES > 3."
+  #error "L64XX requires LINEAR_AXES 3. Homing with L64XX is not yet implemented for LINEAR_AXES > 3."
 #endif
 
 /**
@@ -3466,7 +3447,7 @@ static_assert(_PLUS_TEST(4), "HOMING_FEEDRATE_MM_M values must be positive.");
 
 #if ENABLED(MECHANICAL_GANTRY_CALIBRATION)
   #if NONE(HAS_MOTOR_CURRENT_DAC, HAS_MOTOR_CURRENT_SPI, HAS_MOTOR_CURRENT_DAC, HAS_TRINAMIC_CONFIG, HAS_MOTOR_CURRENT_PWM)
-    #error "Adjustable current drivers are highly recommended to prevent damage. Comment out this line to continue anyway."
+    #error "It is highly recommended to have adjustable current drivers to prevent damage. Disable this line to continue anyway."
   #elif !defined(GANTRY_CALIBRATION_CURRENT)
     #error "MECHANICAL_GANTRY_CALIBRATION Requires GANTRY_CALIBRATION_CURRENT to be set."
   #elif !defined(GANTRY_CALIBRATION_EXTRA_HEIGHT)
@@ -3583,8 +3564,6 @@ static_assert(_PLUS_TEST(4), "HOMING_FEEDRATE_MM_M values must be positive.");
     #error "PSU_CONTROL requires PS_ON_PIN."
   #elif POWER_OFF_DELAY < 0
     #error "POWER_OFF_DELAY must be a positive value."
-  #elif ENABLED(POWER_OFF_WAIT_FOR_COOLDOWN) && !(defined(AUTO_POWER_E_TEMP) || defined(AUTO_POWER_CHAMBER_TEMP) || defined(AUTO_POWER_COOLER_TEMP))
-    #error "POWER_OFF_WAIT_FOR_COOLDOWN requires AUTO_POWER_E_TEMP, AUTO_POWER_CHAMBER_TEMP, and/or AUTO_POWER_COOLER_TEMP."
   #endif
 #endif
 
@@ -3799,15 +3778,22 @@ static_assert(_PLUS_TEST(4), "HOMING_FEEDRATE_MM_M values must be positive.");
 #if _BAD_DRIVER(Z)
   #error "Z_DRIVER_TYPE is not recognized."
 #endif
-#if _BAD_DRIVER(I)
-  #error "I_DRIVER_TYPE is not recognized."
+#if HAS_I_AXIS
+  #if _BAD_DRIVER(I)
+    #error "I_DRIVER_TYPE is not recognized."
+  #endif
 #endif
-#if _BAD_DRIVER(J)
-  #error "J_DRIVER_TYPE is not recognized."
+#if HAS_J_AXIS
+  #if _BAD_DRIVER(J)
+    #error "J_DRIVER_TYPE is not recognized."
+  #endif
 #endif
-#if _BAD_DRIVER(K)
-  #error "K_DRIVER_TYPE is not recognized."
+#if HAS_K_AXIS
+  #if _BAD_DRIVER(K)
+    #error "K_DRIVER_TYPE is not recognized."
+  #endif
 #endif
+
 #if _BAD_DRIVER(X2)
   #error "X2_DRIVER_TYPE is not recognized."
 #endif

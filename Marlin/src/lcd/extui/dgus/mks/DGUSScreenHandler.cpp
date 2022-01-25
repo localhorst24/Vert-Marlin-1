@@ -1459,7 +1459,7 @@ void DGUSScreenHandler::LanguagePInit() {
   }
 }
 
-void DGUSScreenHandler::DGUS_ExtrudeLoadInit() {
+void DGUSScreenHandler::DGUS_ExtrudeLoadInit(void) {
   ex_filament.ex_length           = distanceFilament;
   ex_filament.ex_load_unload_flag = 0;
   ex_filament.ex_need_time        = filamentSpeed_mm_s;
@@ -1469,7 +1469,7 @@ void DGUSScreenHandler::DGUS_ExtrudeLoadInit() {
   ex_filament.ex_tick_start       = 0;
 }
 
-void DGUSScreenHandler::DGUS_RunoutInit() {
+void DGUSScreenHandler::DGUS_RunoutInit(void) {
   #if PIN_EXISTS(MT_DET_1)
     SET_INPUT_PULLUP(MT_DET_1_PIN);
   #endif
@@ -1479,7 +1479,7 @@ void DGUSScreenHandler::DGUS_RunoutInit() {
   runout_mks.runout_status = UNRUNOUT_STATUS;
 }
 
-void DGUSScreenHandler::DGUS_Runout_Idle() {
+void DGUSScreenHandler::DGUS_Runout_Idle(void) {
   #if ENABLED(DGUS_MKS_RUNOUT_SENSOR)
     // scanf runout pin
     switch (runout_mks.runout_status) {

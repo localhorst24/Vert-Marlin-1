@@ -1294,7 +1294,16 @@ void setup() {
   // UI must be initialized before EEPROM
   // (because EEPROM code calls the UI).
 
-  SETUP_RUN(ui.init());
+  #if HAS_DWIN_E3V2_BASIC
+    SETUP_RUN(DWIN_Startup());
+  #else
+    SETUP_RUN(ui.init());
+    #if BOTH(HAS_WIRED_LCD, SHOW_BOOTSCREEN)
+      SETUP_RUN(ui.show_bootscreen());
+      const millis_t bootscreen_ms = millis();
+    #endif
+    SETUP_RUN(ui.reset_status());     // Load welcome message early. (Retained if no errors exist.)
+  #endif
 
   #if PIN_EXISTS(SAFE_POWER)
     #if HAS_DRIVER_SAFE_POWER_PROTECT
@@ -1305,21 +1314,16 @@ void setup() {
     #endif
   #endif
 
+  #if ENABLED(PROBE_TARE)
+    SETUP_RUN(probe.tare_init());
+  #endif
+
   #if BOTH(SDSUPPORT, SDCARD_EEPROM_EMULATION)
     SETUP_RUN(card.mount());          // Mount media with settings before first_load
   #endif
 
   SETUP_RUN(settings.first_load());   // Load data from EEPROM if available (or use defaults)
                                       // This also updates variables in the planner, elsewhere
-
-  #if BOTH(HAS_WIRED_LCD, SHOW_BOOTSCREEN)
-    SETUP_RUN(ui.show_bootscreen());
-    const millis_t bootscreen_ms = millis();
-  #endif
-
-  #if ENABLED(PROBE_TARE)
-    SETUP_RUN(probe.tare_init());
-  #endif
 
   #if HAS_ETHERNET
     SETUP_RUN(ethernet.init());
@@ -1498,10 +1502,6 @@ void setup() {
     SETUP_RUN(bltouch.init(/*set_voltage=*/true));
   #endif
 
-  #if ENABLED(MAGLEV4)
-    OUT_WRITE(MAGLEV_TRIGGER_PIN, LOW);
-  #endif
-
   #if ENABLED(I2C_POSITION_ENCODERS)
     SETUP_RUN(I2CPEM.init());
   #endif
@@ -1647,10 +1647,6 @@ void loop() {
     #endif
 
     queue.advance();
-
-    #if EITHER(POWER_OFF_TIMER, POWER_OFF_WAIT_FOR_COOLDOWN)
-      powerManager.checkAutoPowerOff();
-    #endif
 
     endstops.event_handler();
 

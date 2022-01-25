@@ -237,7 +237,7 @@
   #define LCD_HEIGHT                  10    // Character lines
   #define LCD_CONTRAST_MIN            127
   #define LCD_CONTRAST_MAX            255
-  #define LCD_CONTRAST_DEFAULT        250
+  #define DEFAULT_LCD_CONTRAST        250
   #define CONVERT_TO_EXT_ASCII        // Use extended 128-255 symbols from ASCII table.
                                       // At this time present conversion only for cyrillic - bg, ru and uk languages.
                                       // First 7 ASCII symbols in panel font must be replaced with Marlin's special symbols.
@@ -834,7 +834,7 @@
 /**
  * Set a flag for any type of bed probe, including the paper-test
  */
-#if ANY(HAS_Z_SERVO_PROBE, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, SOLENOID_PROBE, SENSORLESS_PROBING, RACK_AND_PINION_PROBE, MAGLEV4)
+#if ANY(HAS_Z_SERVO_PROBE, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, SOLENOID_PROBE, SENSORLESS_PROBING, RACK_AND_PINION_PROBE)
   #define HAS_BED_PROBE 1
 #endif
 

@@ -9,9 +9,6 @@
             "name": "PlatformIO",
             "includePath": [
                 "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/Marlin",
-                "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/LiquidCrystal_AIP31068",
-                "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/SoftSPIB",
-                "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/LiquidCrystal",
                 "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
@@ -25,9 +22,6 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/Marlin",
-                    "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/LiquidCrystal_AIP31068",
-                    "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/SoftSPIB",
-                    "c:/Users/christian.larisch/GitHub/Vertabreak/Vert-Marlin/.pio/libdeps/mega2560/LiquidCrystal",
                     "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/christian.larisch/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
